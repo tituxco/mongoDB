@@ -1,0 +1,10 @@
+<h2>Vemos todas la categorias</h2>
+<h2>{{titulo}}</h2>
+<ul>
+    {{#each categoria}}
+    <li> {{nombre}}
+        <form action="/api/categorias/borrar/{{_id}}?_method=delete" method="post">
+        <button type="submit">Eliminar</button></form>
+    </li>
+    {{/each}}
+</ul>
