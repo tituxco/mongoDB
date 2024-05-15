@@ -3,7 +3,6 @@ import {
   obtenerCategorias,
   crearCategoria,
   borrarCategoria,
-  crearCategoriasVista,
   modificarCategoria,
 } from "../controladores/categoriaCTR.js";
 import { verificarTokenMiddleware } from "../middlewares/verificarTokenMiddleware.js";
@@ -11,8 +10,25 @@ import { verificarTokenMiddleware } from "../middlewares/verificarTokenMiddlewar
 const rutasCategorias = Router();
 
 //rutas para api rest
-rutasCategorias.post("/crearCategoria", verificarTokenMiddleware, crearCategoria);
-rutasCategorias.delete("/borrarCategoria/:id", verificarTokenMiddleware, borrarCategoria);
-rutasCategorias.put("/modificarCategoria/:id",verificarTokenMiddleware, modificarCategoria)
+rutasCategorias.post(
+  "/crearCategoria",
+  verificarTokenMiddleware,
+  crearCategoria
+);
+rutasCategorias.delete(
+  "/borrarCategoria/:id",
+  verificarTokenMiddleware,
+  borrarCategoria
+);
+rutasCategorias.put(
+  "/modificarCategoria/:id",
+  verificarTokenMiddleware,
+  modificarCategoria
+);
+rutasCategorias.get(
+  "/obtenerCategorias",
+  verificarTokenMiddleware,
+  obtenerCategorias
+);
 
 export default rutasCategorias;

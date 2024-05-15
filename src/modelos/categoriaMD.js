@@ -5,4 +5,4 @@ const categoriaModelo = new mongoose.Schema({
   nombre: { type: String, required: true, unique: true },
 });
 
-export default mongoose.model("categoria", categoriaModelo);
+export default mongoose.model("categorias", categoriaModelo);

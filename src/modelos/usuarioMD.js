@@ -2,11 +2,7 @@ import mongoose from "mongoose";
 import { estructuraContrasena } from "../utilidades/validadores.js";
 import bcrypt from "bcrypt";
 
-const tipoUsuarioEnum = [
-  "administrador",
-  "vendedor",
-  "gerente"
-];
+const tipoUsuarioEnum = ["ADMINISTRADOR", "VENDEDOR", "GERENTE"];
 
 const usuarioModelo = new mongoose.Schema({
   nombre: {
@@ -46,7 +42,7 @@ const usuarioModelo = new mongoose.Schema({
       validator: function (v) {
         return tipoUsuarioEnum.includes(v);
       },
-      message: props => `${props.value} no es un tipo de usuario valido`,
+      message: (props) => `${props.value} no es un tipo de usuario valido`,
     },
   },
 

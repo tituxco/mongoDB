@@ -1,11 +1,35 @@
 import express from "express";
-import {verificarTokenMiddleware} from "../middlewares/verificarTokenMiddleware.js"
-import { crearProducto, obtenerProductos } from "../controladores/productoCTR.js";
+import { verificarTokenMiddleware } from "../middlewares/verificarTokenMiddleware.js";
+import {
+  borrarProducto,
+  buscarProductos,
+  crearProducto,
+  modificarProducto,  
+  obtenerProductos,
+} from "../controladores/productoCTR.js";
 
-const rutasProductos=express.Router();
+const rutasProductos = express.Router();
 
-//endpoints
-rutasProductos.post("/crearProducto",verificarTokenMiddleware, crearProducto)
-rutasProductos.get("/obtenerProductos",verificarTokenMiddleware,obtenerProductos)
-
-export default rutasProductos
+//rutas para api rest
+rutasProductos.post("/crearProducto", verificarTokenMiddleware, crearProducto);
+rutasProductos.get(
+  "/obtenerProductos",
+  verificarTokenMiddleware,
+  obtenerProductos
+);
+rutasProductos.put(
+  "/modificarProducto/:id",
+  verificarTokenMiddleware,
+  modificarProducto
+);
+rutasProductos.delete(
+  "/borrarProducto/:id",
+  verificarTokenMiddleware,
+  borrarProducto
+);
+rutasProductos.get(
+  "/buscarProducto/:nombre",
+  verificarTokenMiddleware,
+  buscarProductos
+);
+export default rutasProductos;

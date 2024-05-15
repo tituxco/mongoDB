@@ -6,12 +6,13 @@ const estadoProductosEnum = ["DISPONIBLE", "AGOTADO", "DISCONTINUADO"];
 const productoModelo = new mongoose.Schema({
   codigo: {
     type: String,
-    unique:true
+    unique: true,
+    index:true
   },
   nombre: {
     type: String,
     required: [true, "El nombre del producto es requerido"],
-    minLength: 3,    
+    minLength: 3,
     lowercase: true,
     trim: true,
   },
@@ -19,18 +20,20 @@ const productoModelo = new mongoose.Schema({
     type: Number,
     required: [true, "El precio del producto es requerido"],
     min: [0, "El precio del producto debe ser un numero"],
-    //Al consultar precio multiplica el valor guardado en price
+    //Al consultar precio multiplica el valor guardado
     get: function (value) {
       return value * 1.21;
     },
   },
-  descripcion: String,
+  descripcion: {
+    type:String,
+  },
   stock: Number,
-  
+
   estado: {
     type: String,
-    required:true,
-    enum:estadoProductosEnum,
+    required: true,
+    enum: estadoProductosEnum,
     validate: {
       validator: function (v) {
         return estadoProductosEnum.includes(v);
@@ -42,5 +45,6 @@ const productoModelo = new mongoose.Schema({
   destacado: Boolean,
 });
 
+productoModelo.index({nombre:'text',descripcion:'text'})
 productoModelo.set("toJSON", { getters: true, setters: true });
 export default mongoose.model("productos", productoModelo);
